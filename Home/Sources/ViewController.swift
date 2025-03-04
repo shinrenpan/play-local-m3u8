@@ -1,19 +1,20 @@
 //
-//  HomeVC.swift
+//  ViewController.swift
+//  Home
 //
-//  Created by Shinren Pan on 2024/3/21.
+//  Created by Joe Pan on 2025/3/5.
 //
 
 import Combine
 import UIKit
 
-final class HomeVC: UIViewController {
-    private let vo = HomeVO()
-    private let vm = HomeVM()
-    private let router = HomeRouter()
+public final class ViewController: UIViewController {
+    private let vo = ViewOutlet()
+    private let vm = ViewModel()
+    private let router = Router()
     private var binding: Set<AnyCancellable> = .init()
 
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         setupSelf()
         setupBinding()
@@ -23,9 +24,7 @@ final class HomeVC: UIViewController {
 
 // MARK: - Private
 
-private extension HomeVC {
-    // MARK: Setup Something
-
+private extension ViewController {
     func setupSelf() {
         view.backgroundColor = vo.mainView.backgroundColor
         router.vc = self
@@ -61,8 +60,6 @@ private extension HomeVC {
         
         vo.playButton.addAction(action, for: .touchUpInside)
     }
-
-    // MARK: - Handle State
 
     func stateNone() {}
     

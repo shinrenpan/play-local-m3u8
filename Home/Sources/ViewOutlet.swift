@@ -1,12 +1,13 @@
 //
-//  HomeVO.swift
+//  ViewOutlet.swift
+//  Home
 //
-//  Created by Shinren Pan on 2024/3/21.
+//  Created by Joe Pan on 2025/3/5.
 //
 
 import UIKit
 
-final class HomeVO {
+@MainActor final class ViewOutlet {
     let mainView = UIView(frame: .zero)
     let playButton = UIButton(type: .system)
     
@@ -17,9 +18,7 @@ final class HomeVO {
 
 // MARK: - Private
 
-private extension HomeVO {
-    // MARK: - Add Something
-    
+private extension ViewOutlet {
     func addViews() {
         mainView.translatesAutoresizingMaskIntoConstraints = false
         

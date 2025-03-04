@@ -1,8 +1,8 @@
 //
 //  LocalPlayer.swift
+//  Home
 //
-//  Created by Shinren Pan on 2024/3/21.
-//
+//  Created by Joe Pan on 2025/3/5.
 //
 
 import UIKit
@@ -56,7 +56,7 @@ private extension LocalPlayer {
 
 // MARK: - AVAssetResourceLoaderDelegate
 
-extension LocalPlayer: AVAssetResourceLoaderDelegate {
+extension LocalPlayer: @preconcurrency AVAssetResourceLoaderDelegate {
     func resourceLoader(_ resourceLoader: AVAssetResourceLoader, shouldWaitForRenewalOfRequestedResource renewalRequest: AVAssetResourceRenewalRequest) -> Bool {
         handleLoadingRequest(renewalRequest)
     }

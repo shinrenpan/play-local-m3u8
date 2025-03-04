@@ -1,20 +1,21 @@
 //
-//  HomeVM.swift
+//  ViewModel.swift
+//  Home
 //
-//  Created by Shinren Pan on 2024/3/21.
+//  Created by Joe Pan on 2025/3/5.
 //
 
 import Combine
 import UIKit
 
-final class HomeVM {
-    @Published private(set) var state = HomeModels.State.none
+final class ViewModel {
+    @Published private(set) var state = State.none
 }
 
 // MARK: - Public
 
-extension HomeVM {
-    func doAction(_ action: HomeModels.Action) {
+extension ViewModel {
+    func doAction(_ action: Action) {
         switch action {
         case .loadData:
             actionLoadData()
@@ -24,9 +25,7 @@ extension HomeVM {
 
 // MARK: - Private
 
-private extension HomeVM {
-    // MARK: Handle Action
-    
+private extension ViewModel {
     func actionLoadData() {
         if let path = Bundle.main.path(forResource: "video", ofType: "m3u8") {
             state = .dataLoaded(path: path)

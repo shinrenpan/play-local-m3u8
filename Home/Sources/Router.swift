@@ -1,19 +1,20 @@
 //
-//  HomeRouter.swift
+//  Router.swift
+//  Home
 //
-//  Created by Shinren Pan on 2024/3/21.
+//  Created by Joe Pan on 2025/3/5.
 //
 
 import UIKit
 import AVKit
 
-final class HomeRouter {
-    weak var vc: HomeVC?
+@MainActor final class Router {
+    weak var vc: ViewController?
 }
 
-// MARK: - Public
+// MARK: - Internal
 
-extension HomeRouter {
+internal extension Router {
     func toPlayerVC(path: String) {
         let player = LocalPlayer(m3u8Path: path)
         let to = AVPlayerViewController()
