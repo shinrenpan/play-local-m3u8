@@ -1,1 +1,1 @@
-https://github.com/shinrenpan/shinrenpan/discussions/15
+shinrenpan/shinrenpan/discussions/15
