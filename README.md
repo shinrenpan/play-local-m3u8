@@ -1,1 +1,1 @@
-shinrenpan/shinrenpan/discussions/15
+https://shinrenpan.github.io/2022-07-13/
