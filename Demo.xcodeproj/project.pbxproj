@@ -11,8 +11,10 @@
 		0E0155CF2BAC0F4800044FB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E0155CE2BAC0F4800044FB7 /* Assets.xcassets */; };
 		0E0155D22BAC0F4800044FB7 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 0E0155D12BAC0F4800044FB7 /* Base */; };
 		0E0155E92BAC13E200044FB7 /* video.m3u8 in Resources */ = {isa = PBXBuildFile; fileRef = 0E0155E82BAC13E200044FB7 /* video.m3u8 */; };
+		AA00001111222233440004AA /* HomeViewModel+Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00001111222233440003AA /* HomeViewModel+Models.swift */; };
+		BB00001111222233440002BB /* HomeHostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB00001111222233440001BB /* HomeHostController.swift */; };
+		BB00001111222233440004BB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB00001111222233440003BB /* SceneDelegate.swift */; };
 		D8E7906B2EEFFB1B006BA1FA /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E7906A2EEFFB14006BA1FA /* HomeViewModel.swift */; };
-		D8E7906E2EEFFBE2006BA1FA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E7906D2EEFFBDB006BA1FA /* HomeViewController.swift */; };
 		D8E790702EEFFBEA006BA1FA /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E7906F2EEFFBE7006BA1FA /* HomeView.swift */; };
 		D8E790742EEFFEA0006BA1FA /* LocalPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E790732EEFFEA0006BA1FA /* LocalPlayer.swift */; };
 /* End PBXBuildFile section */
@@ -23,8 +25,11 @@
 		0E0155CE2BAC0F4800044FB7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E0155D12BAC0F4800044FB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0E0155E82BAC13E200044FB7 /* video.m3u8 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = video.m3u8; sourceTree = "<group>"; };
+		AA00001111222233440003AA /* HomeViewModel+Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewModel+Models.swift"; sourceTree = "<group>"; };
+		BB00001111222233440001BB /* HomeHostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHostController.swift; sourceTree = "<group>"; };
+		BB00001111222233440003BB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		BB00001111222233440005BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8E7906A2EEFFB14006BA1FA /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		D8E7906D2EEFFBDB006BA1FA /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D8E7906F2EEFFBE7006BA1FA /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		D8E790732EEFFEA0006BA1FA /* LocalPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPlayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -63,8 +68,10 @@
 				D8E7906C2EEFFB96006BA1FA /* Player */,
 				D8E790692EEFFB01006BA1FA /* Home */,
 				0E0155CC2BAC0F4700044FB7 /* AppDelegate.swift */,
+				BB00001111222233440003BB /* SceneDelegate.swift */,
 				0E0155CE2BAC0F4800044FB7 /* Assets.xcassets */,
 				0E0155D02BAC0F4800044FB7 /* LaunchScreen.storyboard */,
+				BB00001111222233440005BB /* Info.plist */,
 				0E0155E82BAC13E200044FB7 /* video.m3u8 */,
 			);
 			path = Sources;
@@ -81,8 +88,9 @@
 			isa = PBXGroup;
 			children = (
 				D8E7906F2EEFFBE7006BA1FA /* HomeView.swift */,
-				D8E7906D2EEFFBDB006BA1FA /* HomeViewController.swift */,
+				BB00001111222233440001BB /* HomeHostController.swift */,
 				D8E7906A2EEFFB14006BA1FA /* HomeViewModel.swift */,
+				AA00001111222233440003AA /* HomeViewModel+Models.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -123,7 +131,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1530;
-				LastUpgradeCheck = 1530;
+				LastUpgradeCheck = 2640;
 				TargetAttributes = {
 					0E0155C82BAC0F4700044FB7 = {
 						CreatedOnToolsVersion = 15.3;
@@ -167,9 +175,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E0155CD2BAC0F4700044FB7 /* AppDelegate.swift in Sources */,
+				BB00001111222233440004BB /* SceneDelegate.swift in Sources */,
 				D8E790702EEFFBEA006BA1FA /* HomeView.swift in Sources */,
 				D8E7906B2EEFFB1B006BA1FA /* HomeViewModel.swift in Sources */,
-				D8E7906E2EEFFBE2006BA1FA /* HomeViewController.swift in Sources */,
+				AA00001111222233440004AA /* HomeViewModel+Models.swift in Sources */,
+				BB00001111222233440002BB /* HomeHostController.swift in Sources */,
 				D8E790742EEFFEA0006BA1FA /* LocalPlayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -316,7 +326,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Sources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -341,7 +352,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Sources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;

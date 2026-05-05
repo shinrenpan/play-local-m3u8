@@ -1,11 +1,3 @@
-//
-//  LocalPlayer.swift
-//  Home
-//
-//  Created by Joe Pan on 2025/3/5.
-//
-
-import UIKit
 import AVFoundation
 
 final class LocalPlayer: AVPlayer {
@@ -13,44 +5,21 @@ final class LocalPlayer: AVPlayer {
   init(m3u8Path: String) {
     super.init()
 
-    if let url = URLComponents(string: m3u8Path)?.url {
-      let asset = AVURLAsset(url: url)
-      asset.resourceLoader.setDelegate(self, queue: .main)
-      let item = AVPlayerItem(asset: asset)
-      replaceCurrentItem(with: item)
-    }
-    else {
+    let fileURL = URL(fileURLWithPath: m3u8Path)
+    guard var components = URLComponents(url: fileURL, resolvingAgainstBaseURL: false) else {
       replaceCurrentItem(with: nil)
+      return
     }
-  }
-}
-
-// MARK: - Private
-
-private extension LocalPlayer {
-  func handleLoadingRequest(_ request: AVAssetResourceLoadingRequest) -> Bool {
-    guard let url = request.request.url else {
-      return false
+    components.scheme = "local"
+    guard let url = components.url else {
+      replaceCurrentItem(with: nil)
+      return
     }
 
-    if url.absoluteString.isEmpty {
-      return false
-    }
-
-    // 這裡要用 fileURLWithPath
-    // 或是使用 NSData(contentsOfFile: url.absoluteString)
-    guard let data = try? Data(contentsOf: URL(fileURLWithPath: url.absoluteString)) else {
-      return false
-    }
-
-    if data.isEmpty {
-      return false
-    }
-
-    request.dataRequest?.respond(with: data)
-    request.finishLoading()
-
-    return true
+    let asset = AVURLAsset(url: url)
+    asset.resourceLoader.setDelegate(self, queue: .main)
+    let item = AVPlayerItem(asset: asset)
+    replaceCurrentItem(with: item)
   }
 }
 
@@ -60,8 +29,28 @@ extension LocalPlayer: AVAssetResourceLoaderDelegate {
   func resourceLoader(_ resourceLoader: AVAssetResourceLoader, shouldWaitForRenewalOfRequestedResource renewalRequest: AVAssetResourceRenewalRequest) -> Bool {
     handleLoadingRequest(renewalRequest)
   }
-  
+
   func resourceLoader(_ resourceLoader: AVAssetResourceLoader, shouldWaitForLoadingOfRequestedResource loadingRequest: AVAssetResourceLoadingRequest) -> Bool {
     handleLoadingRequest(loadingRequest)
+  }
+}
+
+// MARK: - Private
+
+private extension LocalPlayer {
+  func handleLoadingRequest(_ request: AVAssetResourceLoadingRequest) -> Bool {
+    guard let url = request.request.url,
+          var components = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
+      return false
+    }
+    components.scheme = "file"
+    guard let fileURL = components.url,
+          let data = try? Data(contentsOf: fileURL),
+          !data.isEmpty else {
+      return false
+    }
+    request.dataRequest?.respond(with: data)
+    request.finishLoading()
+    return true
   }
 }

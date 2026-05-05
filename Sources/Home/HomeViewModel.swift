@@ -1,20 +1,17 @@
-//
-//  HomeViewModel.swift
-//  Demo
-//
-//  Created by Joe Pan on 2025/12/15.
-//
-
 import Foundation
 import Observation
 
+@Observable
 @MainActor
 final class HomeViewModel {
-  enum Action: Equatable, Sendable {
+  enum Action: Sendable {
     case view(ViewAction)
     case router(Router)
   }
 
+  var state: State = .init()
+
+  @ObservationIgnored
   var onAction: (@MainActor (Action) -> Void)?
 
   func doAction(_ action: Action) async {
@@ -23,15 +20,15 @@ final class HomeViewModel {
       await handleViewAction(action)
 
     case let .router(router):
-      await handleRouter(router)
+      handleRouter(router)
     }
   }
 }
 
-// MARK: - View Action
+// MARK: - ViewAction
 
 extension HomeViewModel {
-  enum ViewAction: Equatable, Sendable {
+  enum ViewAction: Sendable {
     case playButtonDidTap
   }
 
@@ -47,11 +44,11 @@ extension HomeViewModel {
 // MARK: - Router
 
 extension HomeViewModel {
-  enum Router: Equatable, Sendable {
+  enum Router: Sendable {
     case openPlayer(path: String?)
   }
 
-  private func handleRouter(_ router: Router) async {
+  private func handleRouter(_ router: Router) {
     onAction?(.router(router))
   }
 }
