@@ -3,48 +3,28 @@ import AVKit
 
 @MainActor
 final class HomeHostController: UIHostingController<HomeView> {
+  private let viewModel: HomeViewModel
 
-  // MARK: - ViewModel
-  let viewModel: HomeViewModel
-
-  // MARK: - Init
   init(viewModel: HomeViewModel) {
     self.viewModel = viewModel
-    let view = HomeView(viewModel: viewModel)
-    super.init(rootView: view)
+    super.init(rootView: HomeView(viewModel: viewModel))
   }
 
   @available(*, unavailable)
-  required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
-}
+  required init?(coder: NSCoder) { fatalError() }
 
-// MARK: - Lifecycle
-
-extension HomeHostController {
   override func viewDidLoad() {
     super.viewDidLoad()
-    listenSelfAction()
+    viewModel.onRoute = { [weak self] router in
+      self?.handleRouter(router)
+    }
   }
 }
 
 // MARK: - Router
 
 private extension HomeHostController {
-  func listenSelfAction() {
-    viewModel.onAction = { [weak self] action in
-      switch action {
-      case .view:
-        break
-
-      case let .router(router):
-        self?.handleSelfRouter(router)
-      }
-    }
-  }
-
-  func handleSelfRouter(_ router: HomeViewModel.Router) {
+  func handleRouter(_ router: HomeViewModel.Router) {
     switch router {
     case let .openPlayer(path):
       guard let path else { return }

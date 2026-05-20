@@ -1,0 +1,19 @@
+name: Demo
+options:
+  bundleIdPrefix: com.shinrenpan
+  deploymentTarget:
+    iOS: "18.0"
+
+targets:
+  Demo:
+    type: application
+    platform: iOS
+    sources:
+      - Sources
+    info:
+      path: Sources/Info.plist
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.shinrenpan.Demo
+        TARGETED_DEVICE_FAMILY: "1"
+        SWIFT_STRICT_CONCURRENCY: targeted

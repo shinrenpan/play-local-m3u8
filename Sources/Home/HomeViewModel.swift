@@ -6,26 +6,22 @@ import Observation
 final class HomeViewModel {
   enum Action: Sendable {
     case view(ViewAction)
-    case router(Router)
   }
 
   var state: State = .init()
 
   @ObservationIgnored
-  var onAction: (@MainActor (Action) -> Void)?
+  var onRoute: (@MainActor (Router) -> Void)?
 
   func doAction(_ action: Action) async {
     switch action {
     case let .view(action):
       await handleViewAction(action)
-
-    case let .router(router):
-      handleRouter(router)
     }
   }
 }
 
-// MARK: - ViewAction
+// MARK: - View Action
 
 extension HomeViewModel {
   enum ViewAction: Sendable {
@@ -36,7 +32,7 @@ extension HomeViewModel {
     switch action {
     case .playButtonDidTap:
       let path = Bundle.main.path(forResource: "video", ofType: "m3u8")
-      await doAction(.router(.openPlayer(path: path)))
+      onRoute?(.openPlayer(path: path))
     }
   }
 }
@@ -46,9 +42,5 @@ extension HomeViewModel {
 extension HomeViewModel {
   enum Router: Sendable {
     case openPlayer(path: String?)
-  }
-
-  private func handleRouter(_ router: Router) {
-    onAction?(.router(router))
   }
 }
