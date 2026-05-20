@@ -4,6 +4,16 @@ Demo app：示範如何讓 `AVPlayer` 播放 App Bundle 內的本地 `.m3u8` HLS
 
 ---
 
+## 使用方式
+
+```bash
+brew install xcodegen
+xcodegen generate
+open Demo.xcodeproj
+```
+
+---
+
 ## 核心問題
 
 AVPlayer 可以直接以 `file://` URL 播放本地影片，但對於 `.m3u8` playlist，它會在解析完 manifest 後，**直接嘗試以原始路徑載入每一個 segment**。這個過程完全繞過了 `AVAssetResourceLoaderDelegate`，導致無法攔截並自訂載入行為。
